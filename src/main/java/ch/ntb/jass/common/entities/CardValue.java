@@ -1,4 +1,4 @@
-package ch.ntb.jass.common;
+package ch.ntb.jass.common.entities;
 
 public enum CardValue {
 	//(	Defaultvalue, 	Trumpfvalue, 	GeneralScore, 	TrumpfScore, 	UneufeScore, 	ObenabeScore)

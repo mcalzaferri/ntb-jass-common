@@ -1,4 +1,4 @@
-package ch.ntb.jass.common;
+package ch.ntb.jass.common.entities;
 
 public class Card {
 	private CardColor color;

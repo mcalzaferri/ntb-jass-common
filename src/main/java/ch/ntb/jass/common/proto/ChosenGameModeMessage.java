@@ -1,6 +1,6 @@
 package ch.ntb.jass.common.proto;
 
-import ch.ntb.jass.common.*;
+import shared.*;
 
 public class ChosenGameModeMessage extends ToServerMessage {
 	public GameMode mode;
