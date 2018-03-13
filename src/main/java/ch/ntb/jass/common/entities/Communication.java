@@ -1,6 +1,7 @@
-package ch.ntb.jass.common;
+package ch.ntb.jass.common.entities;
 
-import ch.ntb.jass.common.proto.*;
+
+import ch.ntb.jass.common.proto.Message;
 
 public class Communication {
 	private int port;

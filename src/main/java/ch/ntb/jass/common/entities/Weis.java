@@ -1,6 +1,6 @@
-package ch.ntb.jass.common;
+package ch.ntb.jass.common.entities;
 
-public class Weis implements Comparable<Weis>{
+public class Weis implements Comparable<Weis> {
 	//Datenfelder
 	private final WeisType type;
 	private final Card originCard;
