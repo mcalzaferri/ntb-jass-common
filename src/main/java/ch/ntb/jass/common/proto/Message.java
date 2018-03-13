@@ -2,6 +2,11 @@ package ch.ntb.jass.common.proto;
 
 import java.util.Objects;
 
+/**
+ * Message that will be sent from Server to Client.
+ * @param type defines de message type that will be sent.
+ */
+
 public class Message {
     public String type;
 
