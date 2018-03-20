@@ -10,5 +10,5 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
  */
 
 public class ChooseGameModeMessage extends ToPlayerMessage {
-    public GameMode [] mode;
+    public boolean canSchieben;
 }
