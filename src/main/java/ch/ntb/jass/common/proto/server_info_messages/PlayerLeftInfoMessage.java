@@ -9,6 +9,6 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
  * @param player player who left the game
  */
 
-public class PlayerLeftGameInfoMessage extends ToPlayerMessage{
+public class PlayerLeftInfoMessage extends ToPlayerMessage{
 	public Player player;
 }
