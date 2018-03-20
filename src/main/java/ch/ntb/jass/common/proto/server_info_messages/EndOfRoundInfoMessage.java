@@ -8,6 +8,6 @@ import ch.ntb.jass.common.entities.*;
  * @param score contains the score of the ongoing game 
  */
 
-public class EndOfRoundInfoMessage {
+public class EndOfRoundInfoMessage extends ToPlayerMessage {
 	public Score [] score;
 }
