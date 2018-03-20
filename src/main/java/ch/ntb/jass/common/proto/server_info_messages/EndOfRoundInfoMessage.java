@@ -1,6 +1,7 @@
 package ch.ntb.jass.common.proto.server_info_messages;
 
 import ch.ntb.jass.common.entities.*;
+import ch.ntb.jass.common.proto.ToPlayerMessage;
 
 /**
  * This is a informationmessage sent to all players.
