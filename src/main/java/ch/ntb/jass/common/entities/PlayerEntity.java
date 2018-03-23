@@ -1,5 +1,5 @@
 package ch.ntb.jass.common.entities;
 
-public class CardList {
+public class PlayerEntity {
 
 }
