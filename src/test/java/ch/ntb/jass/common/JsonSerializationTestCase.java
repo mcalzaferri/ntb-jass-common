@@ -1,8 +1,6 @@
 package ch.ntb.jass.common;
 
-import ch.ntb.jass.common.entities.Card;
-import ch.ntb.jass.common.entities.CardColor;
-import ch.ntb.jass.common.entities.CardValue;
+import ch.ntb.jass.common.entities.*;
 import ch.ntb.jass.common.proto.Message;
 import ch.ntb.jass.common.proto.ToPlayerMessage;
 import ch.ntb.jass.common.proto.server_info_messages.TurnInfoMessage;
@@ -43,9 +41,9 @@ public class JsonSerializationTestCase {
         {
             TurnInfoMessage message = new TurnInfoMessage();
             message.id = "42";
-            message.laidCard = new Card();
-            message.laidCard.color = CardColor.SCHILTE;
-            message.laidCard.value = CardValue.KOENIG;
+            message.laidCard = new CardEntity();
+            message.laidCard.color = CardColorEntity.SCHILTE;
+            message.laidCard.value = CardValueEntity.KOENIG;
 
             testData.add(message);
         }
