@@ -10,7 +10,7 @@ import ch.ntb.jass.common.proto.ToServerMessage;
  * @param color contains the color the card with the chosen gamemode is "trumpf"
  */
 
-public class ChosenTrumpMessage extends ToServerMessage {
+public class ChosenGameModeMessage extends ToServerMessage {
     public GameMode mode;
     public CardColor color;
 }

@@ -9,6 +9,6 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
  * @param mode modes that he can choose
  */
 
-public class ChooseTrumpMessage extends ToPlayerMessage {
+public class ChooseGameModeMessage extends ToPlayerMessage {
     public boolean canSchieben;
 }
