@@ -1,4 +1,7 @@
 package ch.ntb.jass.common.proto;
 
-public class ToServerMessage extends Message {
-}
+/**
+ * Defines that this Message is a Message that will be sent to a server.
+ */
+
+public class ToServerMessage extends Message {}
