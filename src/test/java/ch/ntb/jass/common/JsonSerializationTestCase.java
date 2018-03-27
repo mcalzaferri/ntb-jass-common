@@ -1,0 +1,84 @@
+package ch.ntb.jass.common;
+
+import ch.ntb.jass.common.entities.Card;
+import ch.ntb.jass.common.entities.CardColor;
+import ch.ntb.jass.common.entities.CardValue;
+import ch.ntb.jass.common.proto.Message;
+import ch.ntb.jass.common.proto.ToPlayerMessage;
+import ch.ntb.jass.common.proto.server_info_messages.TurnInfoMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+public class JsonSerializationTestCase {
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectReader objectReader = objectMapper.readerFor(Message.class);
+    private ObjectWriter objectWriter = objectMapper.writerFor(Message.class);
+
+    private List<Message> testData = new ArrayList<>();
+
+    {
+        {
+            Message message = new Message();
+            message.id = "42";
+
+            testData.add(message);
+        }
+
+        {
+            Message message = new ToPlayerMessage();
+            message.id = "42";
+
+            testData.add(message);
+        }
+
+        {
+            TurnInfoMessage message = new TurnInfoMessage();
+            message.id = "42";
+            message.laidCard = new Card();
+            message.laidCard.color = CardColor.SCHILTE;
+            message.laidCard.value = CardValue.KOENIG;
+
+            testData.add(message);
+        }
+    }
+
+    @Test
+    public void testSerialization() throws IOException {
+        //test generic serialization and deserialization
+        for (Message message : testData) {
+            String jsonString = objectMapper.writeValueAsString(message);
+            Message deserializedMessage = objectMapper.readValue(jsonString, Message.class);
+            String jsonStringReserialized = objectMapper.writeValueAsString(message);
+
+            assertEquals(jsonString, jsonStringReserialized);
+            assertEquals(message, deserializedMessage);
+            assertEquals(message.getClass(), deserializedMessage.getClass());
+        }
+    }
+
+    @Test
+    public void testSerializationWithSpecificReaderAndWriter() throws IOException {
+        //test serialization and deserialization with specific reader and writer
+        for (Message message : testData) {
+            String jsonString = objectWriter.writeValueAsString(message);
+            Message deserializedMessage = objectReader.readValue(jsonString);
+            String jsonStringReserialized = objectWriter.writeValueAsString(message);
+
+            System.out.println(jsonString);
+
+            assertTrue("Json string must not contain line endings", jsonString.matches("[^\r\n]+"));
+            assertEquals(jsonString, jsonStringReserialized);
+            assertEquals(message, deserializedMessage);
+            assertEquals(message.getClass(), deserializedMessage.getClass());
+        }
+    }
+}
