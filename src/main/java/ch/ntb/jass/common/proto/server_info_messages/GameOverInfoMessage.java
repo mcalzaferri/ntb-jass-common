@@ -10,5 +10,5 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
  */
 
 public class GameOverInfoMessage extends ToPlayerMessage {
-    public Score [] score;
+    public Score score;
 }
