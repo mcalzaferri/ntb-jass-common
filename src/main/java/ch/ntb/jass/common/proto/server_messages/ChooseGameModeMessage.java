@@ -1,6 +1,5 @@
 package ch.ntb.jass.common.proto.server_messages;
 
-import ch.ntb.jass.common.entities.GameMode;
 import ch.ntb.jass.common.proto.ToPlayerMessage;
 
 /**
