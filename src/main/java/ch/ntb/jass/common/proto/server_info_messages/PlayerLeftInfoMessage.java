@@ -1,6 +1,6 @@
 package ch.ntb.jass.common.proto.server_info_messages;
 
-import ch.ntb.jass.common.entities.Player;
+import ch.ntb.jass.common.entities.PlayerEntity;
 import ch.ntb.jass.common.proto.ToPlayerMessage;
 
 /**
@@ -10,5 +10,5 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
  */
 
 public class PlayerLeftInfoMessage extends ToPlayerMessage{
-	public Player player;
+	public PlayerEntity player;
 }

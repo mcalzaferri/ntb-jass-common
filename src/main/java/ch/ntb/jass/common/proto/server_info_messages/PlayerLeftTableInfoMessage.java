@@ -1,6 +1,6 @@
 package ch.ntb.jass.common.proto.server_info_messages;
 
-import ch.ntb.jass.common.entities.Player;
+import ch.ntb.jass.common.entities.PlayerEntity;
 
 /**
  * This is a informationmessage sent to all players.
@@ -9,5 +9,5 @@ import ch.ntb.jass.common.entities.Player;
  */
 
 public class PlayerLeftTableInfoMessage {
-	public Player player;
+	public PlayerEntity player;
 }
