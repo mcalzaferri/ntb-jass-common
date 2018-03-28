@@ -1,8 +1,7 @@
 package ch.ntb.jass.common.entities;
 
 public class TeamEntity {
-	public PlayerEntity player1;
-	public PlayerEntity player2;
+	public PlayerEntity[] players = new PlayerEntity[2];
 	public int teamId;
 	
 	//Methods
