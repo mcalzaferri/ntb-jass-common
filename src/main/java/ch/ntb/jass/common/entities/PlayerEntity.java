@@ -2,7 +2,6 @@ package ch.ntb.jass.common.entities;
 
 public class PlayerEntity {
 	public String name;
-	public TeamEntity team;
 	public SeatEntity seat;
 	public boolean isBot;
 	public int id;
