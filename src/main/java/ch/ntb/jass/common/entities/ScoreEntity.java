@@ -1,5 +1,9 @@
 package ch.ntb.jass.common.entities;
 
-public class ScoreEntity {
+import java.util.Dictionary;
 
+public class ScoreEntity {
+	//Dictionary of <Team, Score>
+	//Use get((teamId) key) to obtain the score of one team
+	Dictionary<Integer, Integer> scores;
 }
