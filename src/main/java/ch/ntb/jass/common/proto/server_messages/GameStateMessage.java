@@ -12,7 +12,7 @@ import ch.ntb.jass.common.entities.*;
  * 
  * @param teams The teams which are competing.
  * @param currentPlayer The player whos turn it is.
- * @param hands The number of cards each player has (The key of the Dictionary is the seatNr of each player)
+ * @param hands Information about the cards each player has. (Usually color and value are null/UNKNOWN as only the number of cards is important) (The key of the Dictionary is the seatNr of each player)
  * @param deck The current state of the cards which are laid on the table.
  * @param trump Current trump.
  * @param score Current score.
@@ -22,10 +22,8 @@ import ch.ntb.jass.common.entities.*;
 public class GameStateMessage extends LobbyStateMessage {
     public TeamEntity[] teams;
     public PlayerEntity currentPlayer;
-    public Dictionary<Integer, Integer> hands;
+    public Dictionary<Integer, CardEntity[]> hands;
     public CardEntity[] deck;
     public TrumpEntity trump;
     public ScoreEntity score;
-    
-    
 }

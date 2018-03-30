@@ -5,10 +5,10 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
 
 /**
  * This is a informationmessage sent to all players.
- * This message is sent when a player joines the table.
- * @param player player who joined the table
+ * This message is sent when a  player disconnects from the lobby
+ * @param player player who left the lobby
  */
 
-public class PlayerJoinedInfoMessage extends ToPlayerMessage{
+public class PlayerLeftLobbyInfoMessage extends ToPlayerMessage{
 	public PlayerEntity player;
 }
