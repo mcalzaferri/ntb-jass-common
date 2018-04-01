@@ -1,8 +1,9 @@
 package ch.ntb.jass.common;
 
-import ch.ntb.jass.common.entities.*;
+import ch.ntb.jass.common.entities.CardColorEntity;
+import ch.ntb.jass.common.entities.CardEntity;
+import ch.ntb.jass.common.entities.CardValueEntity;
 import ch.ntb.jass.common.proto.Message;
-import ch.ntb.jass.common.proto.ToPlayerMessage;
 import ch.ntb.jass.common.proto.server_info_messages.TurnInfoMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
@@ -24,20 +25,6 @@ public class JsonSerializationTestCase {
     private List<Message> testData = new ArrayList<>();
 
     {
-        {
-            Message message = new Message();
-            message.id = "42";
-
-            testData.add(message);
-        }
-
-        {
-            Message message = new ToPlayerMessage();
-            message.id = "42";
-
-            testData.add(message);
-        }
-
         {
             TurnInfoMessage message = new TurnInfoMessage();
             message.id = "42";
@@ -70,8 +57,6 @@ public class JsonSerializationTestCase {
             String jsonString = objectWriter.writeValueAsString(message);
             Message deserializedMessage = objectReader.readValue(jsonString);
             String jsonStringReserialized = objectWriter.writeValueAsString(message);
-
-            System.out.println(jsonString);
 
             assertTrue("Json string must not contain line endings", jsonString.matches("[^\r\n]+"));
             assertEquals(jsonString, jsonStringReserialized);

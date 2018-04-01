@@ -1,6 +1,11 @@
 package ch.ntb.jass.common.proto;
 
-import ch.ntb.jass.common.proto.server_info_messages.TurnInfoMessage;
+import ch.ntb.jass.common.proto.player_messages.*;
+import ch.ntb.jass.common.proto.server_info_messages.*;
+import ch.ntb.jass.common.proto.server_messages.ChooseGameModeMessage;
+import ch.ntb.jass.common.proto.server_messages.GameStateMessage;
+import ch.ntb.jass.common.proto.server_messages.HandOutCardsMessage;
+import ch.ntb.jass.common.proto.server_messages.LobbyStateMessage;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -8,6 +13,7 @@ import java.util.Objects;
 
 /**
  * Message that will be sent from Server to Client.
+ *
  * @param type defines de message type that will be sent.
  */
 
@@ -17,12 +23,35 @@ import java.util.Objects;
         property = "@type"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ToPlayerMessage.class, name = "serverMessage"),
-        @JsonSubTypes.Type(value = ToServerMessage.class, name = "clientMessage"),
-        @JsonSubTypes.Type(value = TurnInfoMessage.class, name = "turnInfo")
+        @JsonSubTypes.Type(value = JoinLobbyMessage.class, name = "joinLobby"),
+        @JsonSubTypes.Type(value = LeaveLobbyMessage.class, name = "leaveLobby"),
+        @JsonSubTypes.Type(value = LobbyStateMessage.class, name = "lobbyState"),
+        @JsonSubTypes.Type(value = PlayerLeftLobbyInfoMessage.class, name = "playerLeftLobbyInfo"),
+        @JsonSubTypes.Type(value = PlayerMovedToLobbyInfoMessage.class, name = "playerMovedToLobbyInfo"),
+
+        @JsonSubTypes.Type(value = JoinTableMessage.class, name = "joinTable"),
+        @JsonSubTypes.Type(value = LeaveTableMessage.class, name = "leaveTable"),
+        @JsonSubTypes.Type(value = PlayerMovedToTableInfoMessage.class, name = "playerMovedToTableInfo"),
+
+        @JsonSubTypes.Type(value = ChooseGameModeMessage.class, name = "chooseGameMode"),
+        @JsonSubTypes.Type(value = ChosenGameModeMessage.class, name = "chosenGameMode"),
+        @JsonSubTypes.Type(value = ChosenGameModeInfoMessage.class, name = "chosenGameModeInfo"),
+
+        @JsonSubTypes.Type(value = GameStateMessage.class, name = "gameState"),
+        @JsonSubTypes.Type(value = ChosenWiisMessage.class, name = "chosenWiis"),
+        @JsonSubTypes.Type(value = ChangeStateMessage.class, name = "changeState"),
+        @JsonSubTypes.Type(value = HandOutCardsMessage.class, name = "handoutCards"),
+        @JsonSubTypes.Type(value = PlaceCardMessage.class, name = "placeCard"),
+        @JsonSubTypes.Type(value = PlayerChangedStateMessage.class, name = "playerChangedState"),
+        @JsonSubTypes.Type(value = WiisInfoMessage.class, name = "wiisInfo"),
+        @JsonSubTypes.Type(value = GameStartedInfoMessage.class, name = "gameStartedInfo"),
+        @JsonSubTypes.Type(value = NewRoundInfoMessage.class, name = "newRoundInfo"),
+        @JsonSubTypes.Type(value = NewTurnInfoMessage.class, name = "newTurnInfo"),
+        @JsonSubTypes.Type(value = TurnInfoMessage.class, name = "turnInfo"),
+        @JsonSubTypes.Type(value = EndOfRoundInfoMessage.class, name = "endOfRoundInfo"),
 })
 
-public class Message {
+public abstract class Message {
     /**
      * An id defined by the sender, which may be used in related responses
      */
