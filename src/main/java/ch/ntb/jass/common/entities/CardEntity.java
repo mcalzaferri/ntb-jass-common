@@ -16,6 +16,10 @@ public class CardEntity {
     	//Compose ID
 		return card.color.getId()*10 + card.value.getId();
 	}
+    
+    public int getId() {
+    	return getId(this);
+    }
 
     //TODO Maybe use a Constructor instead?
     /** Creates a new CardEntity out of its ID representative.
