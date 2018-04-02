@@ -1,6 +1,7 @@
 package ch.ntb.jass.common;
 
 import ch.ntb.jass.common.proto.Message;
+import ch.ntb.jass.common.util.TestUtils;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import org.junit.Test;
 
