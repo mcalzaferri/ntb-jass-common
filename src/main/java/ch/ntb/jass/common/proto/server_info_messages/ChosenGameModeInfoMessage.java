@@ -13,4 +13,5 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
 public class ChosenGameModeInfoMessage extends ToPlayerMessage {
     public GameModeEntity mode;
     public CardColorEntity color;
+    
 }
