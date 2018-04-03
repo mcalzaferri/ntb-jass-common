@@ -2,10 +2,7 @@ package ch.ntb.jass.common.proto;
 
 import ch.ntb.jass.common.proto.player_messages.*;
 import ch.ntb.jass.common.proto.server_info_messages.*;
-import ch.ntb.jass.common.proto.server_messages.ChooseTrumpMessage;
-import ch.ntb.jass.common.proto.server_messages.GameStateMessage;
-import ch.ntb.jass.common.proto.server_messages.HandOutCardsMessage;
-import ch.ntb.jass.common.proto.server_messages.LobbyStateMessage;
+import ch.ntb.jass.common.proto.server_messages.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -42,6 +39,7 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = ChangeStateMessage.class, name = "changeState"),
         @JsonSubTypes.Type(value = HandOutCardsMessage.class, name = "handoutCards"),
         @JsonSubTypes.Type(value = PlaceCardMessage.class, name = "placeCard"),
+        @JsonSubTypes.Type(value = WrongCardMessage.class, name = "wrongCard"),
         @JsonSubTypes.Type(value = PlayerChangedStateMessage.class, name = "playerChangedState"),
         @JsonSubTypes.Type(value = WiisInfoMessage.class, name = "wiisInfo"),
         @JsonSubTypes.Type(value = GameStartedInfoMessage.class, name = "gameStartedInfo"),
