@@ -1,8 +1,8 @@
 package ch.ntb.jass.common.proto.server_messages;
 
-import java.util.Dictionary;
-
 import ch.ntb.jass.common.entities.*;
+
+import java.util.Map;
 
 /**
  * Note that this message extends another message.
@@ -22,7 +22,7 @@ import ch.ntb.jass.common.entities.*;
 public class GameStateMessage extends LobbyStateMessage {
     public TeamEntity[] teams;
     public PlayerEntity currentPlayer;
-    public Dictionary<Integer, CardEntity[]> hands;
+    public Map<Integer, CardEntity[]> hands;
     public CardEntity[] deck;
     public TrumpEntity trump;
     public ScoreEntity score;

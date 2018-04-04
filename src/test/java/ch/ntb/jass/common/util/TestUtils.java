@@ -1,4 +1,4 @@
-package ch.ntb.jass.common;
+package ch.ntb.jass.common.util;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -22,4 +22,11 @@ public class TestUtils {
         return '"' + name.replace("\"", "\\\"") + '"';
     }
 
+    public static boolean hasPublicDefaultConstructor(Class<?> type) {
+        try {
+            return type.getConstructor() != null;
+        } catch (NoSuchMethodException e) {
+            return false;
+        }
+    }
 }

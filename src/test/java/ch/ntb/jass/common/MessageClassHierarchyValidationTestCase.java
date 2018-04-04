@@ -1,6 +1,7 @@
 package ch.ntb.jass.common;
 
 import ch.ntb.jass.common.proto.Message;
+import ch.ntb.jass.common.util.TestUtils;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
@@ -80,10 +81,14 @@ public class MessageClassHierarchyValidationTestCase {
         assertTrue(TestUtils.getTypeErrorMessage(messageType, "must either be abstract or annotated as a subtype of " + ROOT_CLASS.getName()),
                 Modifier.isAbstract(messageType.getModifiers()) || allAnnotatedSubclasses.contains(messageType));
 
+        assertTrue(TestUtils.getTypeErrorMessage(messageType, "must either be abstract or have a public default constructor"),
+                Modifier.isAbstract(messageType.getModifiers()) || TestUtils.hasPublicDefaultConstructor(messageType));
+
         assertTrue(TestUtils.getTypeErrorMessage(messageType, "abstract classes must not be leaf classes"),
                 !Modifier.isAbstract(messageType.getModifiers()) || !subclasses.isEmpty());
 
         TestUtils.assertNotAnnotatedWith(messageType, JsonTypeInfo.class);
         TestUtils.assertNotAnnotatedWith(messageType, JsonSubTypes.class);
     }
+
 }
