@@ -48,6 +48,8 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = NewTurnInfoMessage.class, name = "newTurnInfo"),
         @JsonSubTypes.Type(value = TurnInfoMessage.class, name = "turnInfo"),
         @JsonSubTypes.Type(value = EndOfRoundInfoMessage.class, name = "endOfRoundInfo"),
+
+        @JsonSubTypes.Type(value = ResultMessage.class, name = "result"),
 })
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public abstract class Message {
