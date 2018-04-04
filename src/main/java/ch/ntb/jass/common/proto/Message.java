@@ -3,6 +3,7 @@ package ch.ntb.jass.common.proto;
 import ch.ntb.jass.common.proto.player_messages.*;
 import ch.ntb.jass.common.proto.server_info_messages.*;
 import ch.ntb.jass.common.proto.server_messages.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -48,7 +49,7 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = TurnInfoMessage.class, name = "turnInfo"),
         @JsonSubTypes.Type(value = EndOfRoundInfoMessage.class, name = "endOfRoundInfo"),
 })
-
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public abstract class Message {
     /**
      * An id defined by the sender, which may be used in related responses
