@@ -47,6 +47,7 @@ import java.util.Objects;
         @JsonSubTypes.Type(value = NewRoundInfoMessage.class, name = "newRoundInfo"),
         @JsonSubTypes.Type(value = NewTurnInfoMessage.class, name = "newTurnInfo"),
         @JsonSubTypes.Type(value = TurnInfoMessage.class, name = "turnInfo"),
+        @JsonSubTypes.Type(value = StichInfoMessage.class, name = "stichInfo"),
         @JsonSubTypes.Type(value = EndOfRoundInfoMessage.class, name = "endOfRoundInfo"),
 })
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
