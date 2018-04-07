@@ -29,24 +29,25 @@ state "play" as play {
       state "start game" as startGame : broadcast **GameStartedInfoMessage**
       state "hand out cards" as handOut : \
       broadcast **NewRoundInfoMessage**\nsend **HandOutCardsMessage** to each player
-      state "wait for gamemode" as waitMode : send **ChooseGameModeMessage** to player
+      state "wait for trump" as waitTrump : send **ChooseTrumpMessage** to player
       state "wait for card" as waitForCard
-      state "set gamemode" as setGameMode : broadcast **ChosenGameModeInfoMessage**
-      state "check gamemode" as checkGameMode
+      state "set trump" as setTrump : broadcast **ChosenTrumpInfoMessage**
+      state "check trump" as checkTrump
       state "request card" as requestCard : broadcast **NewTurnInfoMessage**
       state "check card" as checkCard
-      state "accept card" as acceptCard : broadcast **TurnInfoMessage**
+      state "accept card" as acceptCard : \
+      broadcast **TurnInfoMessage**\nor **StichInfoMessage**
       state "discard card" as discardCard : send **WrongCardMessage** to player
       state "handle wiis" as handleWiis : broadcast **WiisInfoMessage**
       state "round over" as roundOver : broadcast **EndOfRoundInfoMessage**
 
       [*] --> startGame
       startGame --> handOut
-      handOut --> waitMode
-      waitMode --> checkGameMode : **ChosenGameModeMessage**\nreceived
-      checkGameMode --> waitMode : schieben
-      checkGameMode --> setGameMode
-      setGameMode --> requestCard
+      handOut --> waitTrump
+      waitTrump --> checkTrump : **ChosenTrumpMessage**\nreceived
+      checkTrump --> waitTrump : schieben
+      checkTrump --> setTrump
+      setTrump --> requestCard
       requestCard --> waitForCard
       waitForCard --> checkCard : **PlaceCardMessage**\nreceived
       waitForCard --> handleWiis : first round and\n**ChosenWiisMessage**\nreceived
@@ -57,7 +58,7 @@ state "play" as play {
       discardCard --> waitForCard
       acceptCard --> roundOver : all cards played
       roundOver --> handOut
-      roundOver --> [*] : score of one team >= 1000
+      roundOver --> [*] : score of one team >= score limit
 
       state "wait for player to join" as waitForJoin2
       state "add player to lobby" as addPlayerToLobby2 : \
