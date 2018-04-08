@@ -9,7 +9,7 @@ import ch.ntb.jass.common.entities.ScoreEntity;
  * @param gameOver If the score has reached the limit, gameOver is true and the game is finished.
  */
 
-public class EndOfRoundInfoMessage extends TurnInfoMessage {
+public class EndOfRoundInfoMessage extends StichInfoMessage {
 	public ScoreEntity score;
 	public boolean gameOver;
 }
