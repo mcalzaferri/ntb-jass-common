@@ -1,5 +1,6 @@
 package ch.ntb.jass.common.proto.server_info_messages;
 
+import ch.ntb.jass.common.entities.TargetScoreEntity;
 import ch.ntb.jass.common.entities.TeamEntity;
 import ch.ntb.jass.common.proto.ToPlayerMessage;
 
@@ -12,4 +13,9 @@ import ch.ntb.jass.common.proto.ToPlayerMessage;
 
 public class GameStartedInfoMessage extends ToPlayerMessage{
 	public TeamEntity[] teams = new TeamEntity[2];
+	/**
+	 * The target score assigned to the current table.
+	 * TODO move to a table entity or table info message, in case they have been added.
+	 */
+	public TargetScoreEntity targetScore;
 }
