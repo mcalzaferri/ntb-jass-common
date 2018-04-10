@@ -9,5 +9,5 @@ import ch.ntb.jass.common.entities.PlayerEntity;
  */
 
 public class StichInfoMessage extends TurnInfoMessage{
-	PlayerEntity playerWhoWonStich;
+	public PlayerEntity playerWhoWonStich;
 }
