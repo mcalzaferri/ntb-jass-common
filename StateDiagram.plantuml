@@ -4,20 +4,16 @@ skinparam shadowing false
 
 [*] --> init
 init --> lobby
-init --> handleLeave
+init --> handleJoinLeave
 
 state "wait for players" as lobby {
       state "wait for message" as waitForMsg
-      state "add player to lobby" as addPlayerToLobby :\
-      send **LobbyStateMessage** to joined player\nbroadcast **PlayerMovedToLobbyInfoMessage**
       state "add player to table" as addPlayerToTable : broadcast **PlayerMovedToTableInfoMessage**
       state "set players ready state" as setPlayerReadyState : broadcast **PlayerChangedStateMessage**
 
       [*] --> waitForMsg
-      waitForMsg -left-> addPlayerToLobby : **JoinLobbyMessage**\nreceived
       waitForMsg --> addPlayerToTable : **JoinTableMessage**\nreceived
       waitForMsg --> setPlayerReadyState : **ChangeStateMessage**\nreceived
-      addPlayerToLobby --> waitForMsg
       addPlayerToTable --> waitForMsg
       setPlayerReadyState --> waitForMsg
       setPlayerReadyState --> [*] : all players ready
@@ -59,14 +55,6 @@ state "play" as play {
       acceptCard --> roundOver : all cards played
       roundOver --> handOut
       roundOver --> [*] : score of one team >= score limit
-
-      state "wait for player to join" as waitForJoin2
-      state "add player to lobby" as addPlayerToLobby2 : \
-      send **GameStateMessage** to player\nbroadcast **PlayerMovedToLobbyInfoMessage**
-
-      [*] --> waitForJoin2
-      waitForJoin2 --> addPlayerToLobby2 : **JoinLobbyMessage**\nreceived
-      addPlayerToLobby2 --> waitForJoin2
 }
 
 state "game over" as gameOver : \
@@ -76,21 +64,26 @@ set ready state of all players to false
 play --> gameOver
 gameOver -up-> init
 
-state "handle leaving players" as handleLeave {
+
+state "handle joining/leaving players" as handleJoinLeave {
+      state "wait for message" as waitForJoinLeave
+      state "add player to lobby" as addPlayerToLobby : \
+      send **GameStateMessage**\nor **LobbyStateMessage** to joined player\nbroadcast **PlayerMovedToLobbyInfoMessage**
       state "remove player from lobby" as removePlayerFromLobby : broadcast **PlayerLeftLobbyInfoMessage**
       state "remove player from table" as removePlayerFromTable : broadcast **PlayerMovedToLobbyInfoMessage**
-      state "wait for player to leave" as waitForLeave
       state "round over" as roundOver2 : broadcast **EndOfRoundInfoMessage**
 
-      [*] --> waitForLeave
-      waitForLeave -right-> removePlayerFromLobby : **LeaveLobbyMessage**\nreceived
-      removePlayerFromLobby --> waitForLeave
-      waitForLeave --> removePlayerFromTable : **LeaveTableMessage**\nreceived
-      removePlayerFromTable --> waitForLeave
+      [*] --> waitForJoinLeave
+      waitForJoinLeave -left-> addPlayerToLobby : **JoinLobbyMessage**\nreceived
+      addPlayerToLobby --> waitForJoinLeave
+      waitForJoinLeave-right-> removePlayerFromLobby : **LeaveLobbyMessage**\nreceived
+      removePlayerFromLobby --> waitForJoinLeave
+      waitForJoinLeave --> removePlayerFromTable : **LeaveTableMessage**\nreceived
+      removePlayerFromTable --> waitForJoinLeave
       removePlayerFromTable --> roundOver2 : game ongoing
       roundOver2 --> [*]
 }
 
-handleLeave --> gameOver
+handleJoinLeave --> gameOver
 
 @enduml
