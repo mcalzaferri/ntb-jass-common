@@ -26,23 +26,23 @@ public enum CardValueEntity {
      */
 	public static CardValueEntity getById(int id) {
 		switch(id) {
-			case 0:
-				return SECHS;
 			case 1:
-				return SIEBEN;
+				return SECHS;
 			case 2:
-				return ACHT;
+				return SIEBEN;
 			case 3:
-				return NEUN;
+				return ACHT;
 			case 4:
-				return ZEHN;
+				return NEUN;
 			case 5:
-				return UNDER;
+				return ZEHN;
 			case 6:
-				return OBER;
+				return UNDER;
 			case 7:
-				return KOENIG;
+				return OBER;
 			case 8:
+				return KOENIG;
+			case 9:
 				return ASS;
 		}
 		return null;
